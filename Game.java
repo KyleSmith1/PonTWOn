@@ -28,12 +28,12 @@ public class Game {
 
         switch (choice.toLowerCase()) {
             case "stick":
-                gameCheck(currentTotal,dealerTotal);
+                gameCheck(currentTotal, dealerTotal);
                 break;
             case "twist":
                 currentTotal = playerHand.handTotal(currentTotal, playerHand.addToHand());
                 System.out.println("New total: " + currentTotal);
-                gameCheck(currentTotal,dealerTotal);
+                gameCheck(currentTotal, dealerTotal);
                 break;
             default:
                 System.out.println("Input not recognised...");
@@ -44,18 +44,19 @@ public class Game {
     }
 
     public void gameCheck(int player, int dealer) {
+        System.out.println("Your final total is: " + player);
+        System.out.println("The dealer's total is: " + dealer);
+
         if (player > 21) {
-            System.out.println("You have gone bust!");
-        } else {
-            System.out.println("Your final total is: " + player);
-            System.out.println("The dealer's total is: " + dealer);
-            if (player < dealer) {
-                System.out.println("The dealer's is higher! You lose...");
-            } else if (player == dealer) {
-                System.out.println("The game is a draw!");
-            } else {
-                System.out.println("You have the higher total! You win!");
-            }
+            System.out.println("You have gone bust! You lose...");
         }
+        else if (player < dealer && player < 22) {
+            System.out.println("The dealer's is higher! You lose...");
+        } else if (player == dealer) {
+            System.out.println("The game is a draw!");
+        } else {
+            System.out.println("You have the higher total! You win!");
+        }
+
     }
 }
