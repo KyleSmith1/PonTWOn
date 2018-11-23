@@ -26,7 +26,6 @@ public class Cards {
 
     public String drawCard(){
         card = deck.get(0);
-        System.out.println("Your card is the " + card);
         deck.remove(card);
         return card;
     }

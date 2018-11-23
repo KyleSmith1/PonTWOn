@@ -12,7 +12,6 @@ public class Hand {
     ArrayList<String> currentHand = new ArrayList<>();
 
     public Hand() {
-        //Add string array / arraylist "Current Hand" for displaying hand
 
     }
 
