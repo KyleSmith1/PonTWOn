@@ -40,9 +40,12 @@ public class Game {
         Button stickButton = new Button("Stick");
         Button twistButton = new Button("Twist");
         Label currentTotalLabel = new Label("Current total: " + currentTotal);
-        
+        Label currentHandLabel = new Label();
+
+        currentHandLabel.setText("Current Hand: " + playerHand.displayHand());
+
         layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(currentTotalLabel,twistButton, stickButton);
+        layout.getChildren().addAll(currentHandLabel, currentTotalLabel, twistButton, stickButton);
 
         Scene appScene2 = new Scene(layout, 500, 500);
         window.setScene(appScene2);
@@ -59,6 +62,7 @@ public class Game {
 
             currentTotal = playerHand.handTotal(currentTotal, playerHand.addToHand());
             currentTotalLabel.setText("Current total: " + currentTotal);
+            currentHandLabel.setText("Current Hand: " + playerHand.displayHand());
             gameCheck(currentTotal);
 
         });
@@ -79,12 +83,12 @@ public class Game {
     }
 
     public void gameEnd(int player, int dealer) {
-        
+
         Label playerEndTotal = new Label("Your final total is: " + player);
         Label dealerEndTotal = new Label("The dealer's total is: " + dealer);
         Label resultMessage = new Label();
-        
-        layout.getChildren().addAll(playerEndTotal,dealerEndTotal);
+
+        layout.getChildren().addAll(playerEndTotal, dealerEndTotal);
 
         if (player < dealer && bust == false) {
             resultMessage.setText("The dealer's is higher! You lose...");
