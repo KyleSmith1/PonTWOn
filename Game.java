@@ -27,7 +27,6 @@ public class Game {
 
         currentTotal = playerHand.handTotal(0, playerHand.addToHand());
         currentTotal = playerHand.handTotal(currentTotal, playerHand.addToHand());
-        System.out.println("Starting total: " + currentTotal);
 
         dealerTotal = dealerHand.handTotal(0, dealerHand.addToHand());
         dealerTotal = dealerHand.handTotal(dealerTotal, dealerHand.addToHand());
