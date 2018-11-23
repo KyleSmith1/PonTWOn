@@ -26,7 +26,7 @@ public class PonTWOn extends Application {
         stage.setScene(appScene);
         stage.show();
 
-        Button startButton = new Button("Start Game");
+        Button startButton = new Button("Start New Game");
         componentLayout.getChildren().add(startButton);
         startButton.setOnAction(value ->{
             

@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,6 +21,7 @@ public class Game {
     Hand playerHand = new Hand();
     Hand dealerHand = new Hand();
     boolean bust = false;
+    VBox layout = new VBox(10);
 
     public Game() {
 
@@ -37,10 +39,10 @@ public class Game {
 
         Button stickButton = new Button("Stick");
         Button twistButton = new Button("Twist");
-
-        VBox layout = new VBox(10);
+        Label currentTotalLabel = new Label("Current total: " + currentTotal);
+        
         layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(twistButton, stickButton);
+        layout.getChildren().addAll(currentTotalLabel,twistButton, stickButton);
 
         Scene appScene2 = new Scene(layout, 500, 500);
         window.setScene(appScene2);
@@ -50,13 +52,13 @@ public class Game {
 
             gameCheck(currentTotal);
             gameEnd(currentTotal, dealerTotal);
-            window.hide();
+            //window.close();
         });
 
         twistButton.setOnAction(value -> {
 
             currentTotal = playerHand.handTotal(currentTotal, playerHand.addToHand());
-            System.out.println("New total: " + currentTotal);
+            currentTotalLabel.setText("Current total: " + currentTotal);
             gameCheck(currentTotal);
 
         });
@@ -77,17 +79,22 @@ public class Game {
     }
 
     public void gameEnd(int player, int dealer) {
-        System.out.println("Your final total is: " + player);
-        System.out.println("The dealer's total is: " + dealer);
+        
+        Label playerEndTotal = new Label("Your final total is: " + player);
+        Label dealerEndTotal = new Label("The dealer's total is: " + dealer);
+        Label resultMessage = new Label();
+        
+        layout.getChildren().addAll(playerEndTotal,dealerEndTotal);
 
         if (player < dealer && bust == false) {
-            System.out.println("The dealer's is higher! You lose...");
+            resultMessage.setText("The dealer's is higher! You lose...");
         } else if (player == dealer) {
-            System.out.println("The game is a draw!");
+            resultMessage.setText("The game is a draw!");
         } else if (player > dealer && dealer < 22 && bust == false) {
-            System.out.println("You have the higher total! You win!");
+            resultMessage.setText("You have the higher total! You win!");
         } else if (bust == true) {
-            System.out.println("You have gone bust... You lose");
+            resultMessage.setText("You have gone bust... You lose");
         }
+        layout.getChildren().add(resultMessage);
     }
 }
