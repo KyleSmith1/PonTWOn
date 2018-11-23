@@ -40,8 +40,10 @@ public class Game {
         Button twistButton = new Button("Twist");
         Label currentTotalLabel = new Label("Current total: " + currentTotal);
         Label currentHandLabel = new Label();
+        Label currentDealerHand = new Label();
 
         currentHandLabel.setText("Current Hand: " + playerHand.displayHand());
+        currentDealerHand.setText("Dealer's Hand: " + playerHand.displayHand());
 
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(currentHandLabel, currentTotalLabel, twistButton, stickButton);
